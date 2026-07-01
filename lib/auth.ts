@@ -3,6 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/db/index"; // your drizzle instance
 import * as schema from "@/db/schema"
 import { emailOTP } from "better-auth/plugins"
+import { sendVerificationEmail } from "@/services/email";
 
 export const auth = betterAuth({
     database: drizzleAdapter(db, {
@@ -10,21 +11,15 @@ export const auth = betterAuth({
         schema
     }),
     emailAndPassword: {
-    enabled: true,
-
-    plugins: [
-        // emailOTP({ 
-        //     async sendVerificationOTP({ email, otp, type }) { 
-        //         if (type === "sign-in") { 
-        //             // Send the OTP for sign in
-        //         } else if (type === "email-verification") { 
-        //             // Send the OTP for email verification
-        //         } else { 
-        //             // Send the OTP for password reset
-        //         } 
-        //     }, 
-        // })
-        ]
-
-  },
+        enabled: true,
+    },
+    emailVerification: {
+        sendOnSignUp: true,
+        sendVerificationEmail: async ({ user, url}) => {
+            const verificationUrl = new URL(url);
+            verificationUrl.searchParams.set("callbackURL", `${verificationUrl.origin}/login`);
+            await sendVerificationEmail(user.email, user.name, verificationUrl.toString());
+        },
+    },
+  
 });

@@ -45,7 +45,7 @@ export default function RegisterForm() {
         return;
       }
 
-      router.push("/login");
+      router.push(`/verify-email?email=${encodeURIComponent(email)}`);
     } catch (err: any) {
       setErrorText(err.message || "An unexpected error occurred");
     } finally {
