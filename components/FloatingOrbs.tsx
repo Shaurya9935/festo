@@ -3,45 +3,36 @@ import React from "react";
 export default function FloatingOrbs() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* Large teal sphere, top-right */}
+      {/* Top-right — emerald accent glow */}
       <div
-        className="absolute -top-20 -right-20 w-72 h-72 rounded-full"
+        className="absolute -top-28 -right-28 w-80 h-80 rounded-full"
         style={{
           background:
-            "radial-gradient(circle at 32% 30%, #618764 0%, #2b5748 45%, #1a3830 75%, #0f2218 100%)",
+            "radial-gradient(circle at 30% 28%, #34d399 0%, #059669 35%, #064e3b 65%, #022c22 100%)",
           boxShadow:
-            "inset -14px -14px 32px rgba(0,0,0,0.55), inset 6px 6px 18px rgba(156,176,128,0.18)",
-          opacity: 0.9,
+            "inset -16px -16px 36px rgba(0,0,0,0.6), inset 7px 7px 20px rgba(52,211,153,0.12)",
+          opacity: 0.55,
         }}
       />
-      {/* Medium sage sphere, bottom-left */}
+      {/* Bottom-left — indigo tint for contrast */}
       <div
-        className="absolute -bottom-14 -left-14 w-52 h-52 rounded-full"
+        className="absolute -bottom-16 -left-16 w-60 h-60 rounded-full"
         style={{
           background:
-            "radial-gradient(circle at 35% 32%, #9cb080 0%, #618764 42%, #2b5748 72%, #1a3830 100%)",
+            "radial-gradient(circle at 35% 32%, #6366f1 0%, #4f46e5 40%, #1e1b4b 80%, #0f0c29 100%)",
           boxShadow:
-            "inset -10px -10px 24px rgba(0,0,0,0.5), inset 5px 5px 14px rgba(200,220,180,0.15)",
-          opacity: 0.75,
+            "inset -10px -10px 26px rgba(0,0,0,0.55), inset 5px 5px 14px rgba(99,102,241,0.1)",
+          opacity: 0.35,
         }}
       />
-      {/* Small accent sphere, top-left */}
+      {/* Small highlight sphere top-left */}
       <div
-        className="absolute top-10 left-10 w-16 h-16 rounded-full"
+        className="absolute top-8 left-8 w-14 h-14 rounded-full"
         style={{
           background:
-            "radial-gradient(circle at 35% 33%, #c8d8b0 0%, #9cb080 50%, #618764 100%)",
-          boxShadow: "inset -5px -5px 12px rgba(0,0,0,0.45)",
-          opacity: 0.45,
-        }}
-      />
-      {/* Tiny sphere mid-right */}
-      <div
-        className="absolute top-1/2 -right-4 w-10 h-10 rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle at 35% 35%, #618764 0%, #2b5748 100%)",
-          opacity: 0.4,
+            "radial-gradient(circle at 35% 33%, #a7f3d0 0%, #34d399 55%, #059669 100%)",
+          boxShadow: "inset -5px -5px 12px rgba(0,0,0,0.4)",
+          opacity: 0.3,
         }}
       />
       {/* Ambient glow pools */}
@@ -49,8 +40,8 @@ export default function FloatingOrbs() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 55% 45% at 85% 8%, rgba(97,135,100,0.18) 0%, transparent 65%)," +
-            "radial-gradient(ellipse 45% 40% at 8% 85%, rgba(43,87,72,0.22) 0%, transparent 65%)",
+            "radial-gradient(ellipse 60% 40% at 90% 5%, rgba(52,211,153,0.12) 0%, transparent 60%)," +
+            "radial-gradient(ellipse 50% 45% at 5% 90%, rgba(99,102,241,0.1) 0%, transparent 60%)",
         }}
       />
     </div>

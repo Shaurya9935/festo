@@ -37,7 +37,7 @@ export default function LoginForm() {
         return;
       }
 
-      router.push("/dashboard");
+      router.push("/get-started");
     } catch (err: any) {
       setErrorText(err.message || "An unexpected error occurred");
     } finally {
@@ -47,12 +47,13 @@ export default function LoginForm() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight" style={{ color: "#e8ede6" }}>
-          Welcome Back
+      {/* Header */}
+      <div className="flex flex-col gap-1">
+        <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#f9fafb" }}>
+          Welcome back
         </h1>
-        <p className="text-sm mt-0.5" style={{ color: "#618764" }}>
-          Login to your account
+        <p className="text-sm" style={{ color: "#6b7280" }}>
+          Sign in to your Festo account
         </p>
       </div>
 
@@ -64,7 +65,7 @@ export default function LoginForm() {
         }}
       >
         <Field
-          label="Email"
+          label="Email address"
           type="email"
           placeholder="you@example.com"
           value={email}
@@ -73,15 +74,22 @@ export default function LoginForm() {
 
         <div className="flex flex-col gap-1.5">
           <div className="flex justify-between items-center">
-            <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#9cb080" }}>
+            <label
+              className="text-xs font-medium uppercase tracking-widest"
+              style={{ color: "#6b7280" }}
+            >
               Password
             </label>
             <button
               type="button"
-              className="text-xs transition-colors"
-              style={{ color: "#618764" }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#9cb080")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#618764")}
+              className="text-xs font-medium transition-colors"
+              style={{ color: "#34d399" }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLButtonElement).style.color = "#6ee7b7")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLButtonElement).style.color = "#34d399")
+              }
             >
               Forgot password?
             </button>
@@ -98,9 +106,20 @@ export default function LoginForm() {
         </div>
 
         {errorText && (
-          <p className="text-xs font-semibold text-red-400 text-center mt-1">
+          <div
+            className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-medium"
+            style={{
+              background: "rgba(239,68,68,0.08)",
+              border: "1px solid rgba(239,68,68,0.2)",
+              color: "#fca5a5",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M8 5v4M8 11h.01" stroke="#fca5a5" strokeWidth="1.5" strokeLinecap="round"/>
+              <circle cx="8" cy="8" r="7" stroke="#fca5a5" strokeWidth="1.5"/>
+            </svg>
             {errorText}
-          </p>
+          </div>
         )}
 
         <button
@@ -108,22 +127,26 @@ export default function LoginForm() {
           disabled={loading}
           className="mt-1 w-full py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           style={{
-            background: "linear-gradient(135deg, #9cb080 0%, #618764 100%)",
-            color: "#1a2820",
-            boxShadow: "0 4px 18px rgba(97,135,100,0.28)",
+            background: "linear-gradient(135deg, #34d399 0%, #059669 100%)",
+            color: "#022c22",
+            boxShadow: "0 4px 20px rgba(52,211,153,0.3), 0 1px 3px rgba(0,0,0,0.3)",
           }}
           onMouseEnter={(e) => {
             if (!loading) {
               (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1.08)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                "0 6px 24px rgba(52,211,153,0.4), 0 1px 3px rgba(0,0,0,0.3)";
             }
           }}
           onMouseLeave={(e) => {
             if (!loading) {
               (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                "0 4px 20px rgba(52,211,153,0.3), 0 1px 3px rgba(0,0,0,0.3)";
             }
           }}
         >
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Signing in…" : "Sign in"}
         </button>
       </form>
 
@@ -134,16 +157,20 @@ export default function LoginForm() {
         <SocialBtn icon={<GithubIcon size={15} />} label="Continue with GitHub" />
       </div>
 
-      <p className="text-center text-sm" style={{ color: "#618764" }}>
+      <p className="text-center text-sm" style={{ color: "#6b7280" }}>
         {"Don't have an account?"}{" "}
         <Link
           href="/register"
-          className="font-medium transition-colors"
-          style={{ color: "#9cb080" }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#c8d8b0")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#9cb080")}
+          className="font-semibold transition-colors"
+          style={{ color: "#34d399" }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.color = "#6ee7b7")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.color = "#34d399")
+          }
         >
-          Sign up
+          Create account
         </Link>
       </p>
     </div>

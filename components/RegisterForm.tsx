@@ -55,15 +55,13 @@ export default function RegisterForm() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div>
-        <h1
-          className="text-2xl font-semibold tracking-tight"
-          style={{ color: "#e8ede6" }}
-        >
-          Create your account
+      {/* Header */}
+      <div className="flex flex-col gap-1">
+        <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#f9fafb" }}>
+          Create an account
         </h1>
-        <p className="text-sm mt-0.5" style={{ color: "#618764" }}>
-          {"Let's get you started with Festo."}
+        <p className="text-sm" style={{ color: "#6b7280" }}>
+          Get started with Festo for free
         </p>
       </div>
 
@@ -81,7 +79,7 @@ export default function RegisterForm() {
           onChange={setName}
         />
         <Field
-          label="Email"
+          label="Email address"
           type="email"
           placeholder="you@example.com"
           value={email}
@@ -92,7 +90,7 @@ export default function RegisterForm() {
           showToggle
           visible={showPw}
           onToggle={() => setShowPw((p) => !p)}
-          placeholder="••••••••"
+          placeholder="Create a strong password"
           value={password}
           onChange={setPassword}
         />
@@ -101,22 +99,23 @@ export default function RegisterForm() {
           showToggle
           visible={showCp}
           onToggle={() => setShowCp((p) => !p)}
-          placeholder="••••••••"
+          placeholder="Repeat your password"
           value={confirm}
           onChange={setConfirm}
         />
 
-        <p className="text-xs leading-relaxed" style={{ color: "#618764" }}>
-          I agree to the{" "}
+        {/* Terms */}
+        <p className="text-xs leading-relaxed" style={{ color: "#6b7280" }}>
+          By creating an account you agree to our{" "}
           <button
             type="button"
-            className="transition-colors"
-            style={{ color: "#9cb080" }}
+            className="transition-colors font-medium"
+            style={{ color: "#34d399" }}
             onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#c8d8b0")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#6ee7b7")
             }
             onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#9cb080")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#34d399")
             }
           >
             Terms of Service
@@ -124,13 +123,13 @@ export default function RegisterForm() {
           and{" "}
           <button
             type="button"
-            className="transition-colors"
-            style={{ color: "#9cb080" }}
+            className="transition-colors font-medium"
+            style={{ color: "#34d399" }}
             onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#c8d8b0")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#6ee7b7")
             }
             onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#9cb080")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#34d399")
             }
           >
             Privacy Policy
@@ -138,9 +137,20 @@ export default function RegisterForm() {
         </p>
 
         {errorText && (
-          <p className="text-xs font-semibold text-red-400 text-center mt-1">
+          <div
+            className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-medium"
+            style={{
+              background: "rgba(239,68,68,0.08)",
+              border: "1px solid rgba(239,68,68,0.2)",
+              color: "#fca5a5",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M8 5v4M8 11h.01" stroke="#fca5a5" strokeWidth="1.5" strokeLinecap="round"/>
+              <circle cx="8" cy="8" r="7" stroke="#fca5a5" strokeWidth="1.5"/>
+            </svg>
             {errorText}
-          </p>
+          </div>
         )}
 
         <button
@@ -148,22 +158,26 @@ export default function RegisterForm() {
           disabled={loading}
           className="w-full py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           style={{
-            background: "linear-gradient(135deg, #9cb080 0%, #618764 100%)",
-            color: "#1a2820",
-            boxShadow: "0 4px 18px rgba(97,135,100,0.28)",
+            background: "linear-gradient(135deg, #34d399 0%, #059669 100%)",
+            color: "#022c22",
+            boxShadow: "0 4px 20px rgba(52,211,153,0.3), 0 1px 3px rgba(0,0,0,0.3)",
           }}
           onMouseEnter={(e) => {
             if (!loading) {
               (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1.08)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                "0 6px 24px rgba(52,211,153,0.4), 0 1px 3px rgba(0,0,0,0.3)";
             }
           }}
           onMouseLeave={(e) => {
             if (!loading) {
               (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1)";
+              (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                "0 4px 20px rgba(52,211,153,0.3), 0 1px 3px rgba(0,0,0,0.3)";
             }
           }}
         >
-          {loading ? "Creating Account..." : "Create Account"}
+          {loading ? "Creating account…" : "Create account"}
         </button>
       </form>
 
@@ -177,17 +191,17 @@ export default function RegisterForm() {
         />
       </div>
 
-      <p className="text-center text-sm" style={{ color: "#618764" }}>
+      <p className="text-center text-sm" style={{ color: "#6b7280" }}>
         Already have an account?{" "}
         <Link
           href="/login"
-          className="font-medium transition-colors"
-          style={{ color: "#9cb080" }}
+          className="font-semibold transition-colors"
+          style={{ color: "#34d399" }}
           onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color = "#c8d8b0")
+            ((e.currentTarget as HTMLAnchorElement).style.color = "#6ee7b7")
           }
           onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color = "#9cb080")
+            ((e.currentTarget as HTMLAnchorElement).style.color = "#34d399")
           }
         >
           Sign in
