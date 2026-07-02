@@ -60,7 +60,7 @@ export default function RegisterForm() {
         <h1 className="text-2xl font-bold tracking-tight" style={{ color: "#f9fafb" }}>
           Create an account
         </h1>
-        <p className="text-sm" style={{ color: "#6b7280" }}>
+        <p className="text-sm" style={{ color: "#9ca3af" }}>
           Get started with Festo for free
         </p>
       </div>
@@ -105,17 +105,17 @@ export default function RegisterForm() {
         />
 
         {/* Terms */}
-        <p className="text-xs leading-relaxed" style={{ color: "#6b7280" }}>
+        <p className="text-xs leading-relaxed" style={{ color: "#9ca3af" }}>
           By creating an account you agree to our{" "}
           <button
             type="button"
             className="transition-colors font-medium"
-            style={{ color: "#34d399" }}
+            style={{ color: "#FF0000" }}
             onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#6ee7b7")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#ff4444")
             }
             onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#34d399")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#FF0000")
             }
           >
             Terms of Service
@@ -124,12 +124,12 @@ export default function RegisterForm() {
           <button
             type="button"
             className="transition-colors font-medium"
-            style={{ color: "#34d399" }}
+            style={{ color: "#FF0000" }}
             onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#6ee7b7")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#ff4444")
             }
             onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#34d399")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#FF0000")
             }
           >
             Privacy Policy
@@ -140,8 +140,8 @@ export default function RegisterForm() {
           <div
             className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-medium"
             style={{
-              background: "rgba(239,68,68,0.08)",
-              border: "1px solid rgba(239,68,68,0.2)",
+              background: "rgba(149,1,1,0.12)",
+              border: "1px solid rgba(255,0,0,0.2)",
               color: "#fca5a5",
             }}
           >
@@ -158,22 +158,22 @@ export default function RegisterForm() {
           disabled={loading}
           className="w-full py-2.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           style={{
-            background: "linear-gradient(135deg, #34d399 0%, #059669 100%)",
-            color: "#022c22",
-            boxShadow: "0 4px 20px rgba(52,211,153,0.3), 0 1px 3px rgba(0,0,0,0.3)",
+            background: "linear-gradient(135deg, #FF0000 0%, #950101 100%)",
+            color: "#fff",
+            boxShadow: "0 4px 20px rgba(255,0,0,0.3), 0 1px 3px rgba(0,0,0,0.4)",
           }}
           onMouseEnter={(e) => {
             if (!loading) {
-              (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1.08)";
+              (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1.1)";
               (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                "0 6px 24px rgba(52,211,153,0.4), 0 1px 3px rgba(0,0,0,0.3)";
+                "0 6px 24px rgba(255,0,0,0.45), 0 1px 3px rgba(0,0,0,0.4)";
             }
           }}
           onMouseLeave={(e) => {
             if (!loading) {
               (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1)";
               (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                "0 4px 20px rgba(52,211,153,0.3), 0 1px 3px rgba(0,0,0,0.3)";
+                "0 4px 20px rgba(255,0,0,0.3), 0 1px 3px rgba(0,0,0,0.4)";
             }
           }}
         >
@@ -191,17 +191,17 @@ export default function RegisterForm() {
         />
       </div>
 
-      <p className="text-center text-sm" style={{ color: "#6b7280" }}>
+      <p className="text-center text-sm" style={{ color: "#9ca3af" }}>
         Already have an account?{" "}
         <Link
           href="/login"
           className="font-semibold transition-colors"
-          style={{ color: "#34d399" }}
+          style={{ color: "#FF0000" }}
           onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color = "#6ee7b7")
+            ((e.currentTarget as HTMLAnchorElement).style.color = "#ff4444")
           }
           onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color = "#34d399")
+            ((e.currentTarget as HTMLAnchorElement).style.color = "#FF0000")
           }
         >
           Sign in

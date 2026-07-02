@@ -28,7 +28,7 @@ export default function Field({
       {label && (
         <label
           className="text-xs font-medium uppercase tracking-widest"
-          style={{ color: "#6b7280" }}
+          style={{ color: "#9ca3af" }}
         >
           {label}
         </label>
@@ -42,18 +42,18 @@ export default function Field({
           className="w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
           style={{
             background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.09)",
+            border: "1px solid rgba(149,1,1,0.2)",
             color: "#f9fafb",
-            boxShadow: "inset 0 1px 2px rgba(0,0,0,0.3)",
+            boxShadow: "inset 0 1px 2px rgba(0,0,0,0.4)",
           }}
           onFocus={(e) => {
-            e.target.style.borderColor = "rgba(52,211,153,0.45)";
+            e.target.style.borderColor = "rgba(255,0,0,0.5)";
             e.target.style.boxShadow =
-              "0 0 0 3px rgba(52,211,153,0.08), inset 0 1px 2px rgba(0,0,0,0.3)";
+              "0 0 0 3px rgba(255,0,0,0.08), inset 0 1px 2px rgba(0,0,0,0.4)";
           }}
           onBlur={(e) => {
-            e.target.style.borderColor = "rgba(255,255,255,0.09)";
-            e.target.style.boxShadow = "inset 0 1px 2px rgba(0,0,0,0.3)";
+            e.target.style.borderColor = "rgba(149,1,1,0.2)";
+            e.target.style.boxShadow = "inset 0 1px 2px rgba(0,0,0,0.4)";
           }}
         />
         {showToggle && (

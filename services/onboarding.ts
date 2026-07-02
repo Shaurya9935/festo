@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/db/index";
-import { userProfile, userType, institution, additionalInfo } from "@/db/schema";
+import { userProfile, userType, institution, additionalInfo, user } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { eq } from "drizzle-orm";
@@ -11,8 +11,8 @@ export async function saveOnboardingData(data: {
   phoneNumber: string;
   country: string;
   state: string;
-  orgName: string;
-  orgType: string;
+  insName: string;
+  // oType: string;
   eventNumber: "1-5" | "5-20" | "20-50" | "50+";
   participantNumber: "<50" | "50-100" | "100-250" | "250-500" | "500+";
   featureType: "QR_Entry" | "Registration" | "Attendance" | "Complete_Event_Management";
@@ -59,28 +59,33 @@ export async function saveOnboardingData(data: {
     }
 
     // 2. Save user type
-    let mappedType: "event_organizer" | "college_representative" | "student" | "club" | "other" = "student";
-    if (data.orgType === "Education") mappedType = "college_representative";
-    else if (data.orgType === "Startup" || data.orgType === "SMB" || data.orgType === "Enterprise") mappedType = "event_organizer";
-    else if (data.orgType === "Non-profit") mappedType = "other";
+    // let mappedType: "event_organizer" | "college_representative" | "student" | "club" | "other" = "student";
+    // if (data.orgType === "Education") mappedType = "college_representative";
+    // else if (data.orgType === "Startup" || data.orgType === "SMB" || data.orgType === "Enterprise") mappedType = "event_organizer";
+    // else if (data.orgType === "Non-profit") mappedType = "other";
 
-    const existingTypes = await db
-      .select()
-      .from(userType)
-      .where(eq(userType.userId, userId))
-      .limit(1);
+    // const existingTypes = await db
+    //   .select()
+    //   .from(userType)
+    //   .where(eq(userType.userId, userId))
+    //   .limit(1);
 
-    if (existingTypes.length > 0) {
-      await db
-        .update(userType)
-        .set({ type: mappedType })
-        .where(eq(userType.userId, userId));
-    } else {
-      await db.insert(userType).values({
-        userId,
-        type: mappedType,
-      });
-    }
+    // if (existingTypes.length > 0) {
+    //   await db
+    //     .update(userType)
+    //     .set({ type: mappedType })
+    //     .where(eq(userType.userId, userId));
+    // } else {
+    //   await db.insert(userType).values({
+    //     userId,
+    //     type: mappedType,
+    //   });
+    // }
+
+    const existingUsers = await db 
+    .select()
+    .from(user)
+    .where(eq(user.userId))
 
     // 3. Save organization/institution
     const existingOrgs = await db
