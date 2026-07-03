@@ -97,34 +97,36 @@ export const accountRelations = relations(account, ({ one }) => ({
 
 // Get started Schema
 
-const userTypeEnum = pgEnum("user_type_enum", ['event_organizer', 'college_representative', 'student', 'club', 'other'])
+export const userTypeEnum = pgEnum("user_type_enum", ['event_organizer', 'college_representative', 'student', 'club', 'other']);
 
-const eventNumberEnum = pgEnum("event_choice_enum", ['1-5', '5-20', '20-50', '50+'])
+export const eventNumberEnum = pgEnum("event_number_enum", ['1-5', '5-20', '20-50', '50+']);
 
-const participantNumberEnum = pgEnum("participant_number_enum", ['<50', '50-100', '100-250', '250-500', '500+'])
+export const participantNumberEnum = pgEnum("participant_number_enum", ['<50', '50-100', '100-250', '250-500', '500+']);
 
-const featureEnum = pgEnum('feature_enum', ['QR_Entry', 'Registration', 'Attendance', 'Complete_Event_Management'])
+export const featureEnum = pgEnum('feature_enum', ['QR_Entry', 'Registration', 'Attendance', 'Complete_Event_Management']);
+
+export const features = [
+  'QR_Entry', 'Registration', 'Attendance', 'Complete_Event_Management'
+];
 
 export const userProfile = pgTable("user_profile", {
   id: uuid("id").primaryKey().defaultRandom(),
 
-  userId: text("user_id").references(()=> user.id),
+  userId: text("user_id").references(()=> user.id), // Ensure 'user' is imported/defined above this!
   fullName: varchar("full_name", {length: 50}).notNull(),
   phoneNumber: varchar("phone_number", {length: 10}),
-  country: varchar("country", {length: 30}),
-  state: varchar("state", {length: 30}),
+  // country: varchar("country", {length: 30}),
+  // state: varchar("state", {length: 30}),
 
   profileImageUrl: text("profile_image_url")
+});
 
-})
+// export const userType = pgTable("user_type", {
+//   id: uuid("id").primaryKey().defaultRandom(),
 
-export const userType = pgTable("user_type", {
-  id: uuid("id").primaryKey().defaultRandom(),
-
-  userId: text("user_id").references(()=> user.id),
-  type: userTypeEnum('user_type').default('student'),
-
-})
+//   userId: text("user_id").references(()=> user.id),
+//   type: userTypeEnum('user_type').default('student'),
+// });
 
 export const institution = pgTable("organization", {
   id : uuid('id').primaryKey().defaultRandom(),
@@ -135,7 +137,7 @@ export const institution = pgTable("organization", {
   // userRole: ,
   institutionWebsite: text('institution_website'),
   officalEmail : text('official_email').notNull(),
-})
+});
 
 export const additionalInfo = pgTable('addtional_info', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -143,5 +145,6 @@ export const additionalInfo = pgTable('addtional_info', {
 
   eventNumber: eventNumberEnum('event_number').default('1-5'),
   participantNumber: participantNumberEnum('participat_number').default('50-100'),
-  featureType: featureEnum('feature_type').default('QR_Entry')
-})
+  featureType: text('feature_type').array().notNull().default(['QR_Entry']) 
+});
+

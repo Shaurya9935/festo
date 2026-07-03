@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/db/index";
-import { userProfile, userType, institution, additionalInfo, user } from "@/db/schema";
+import { userProfile,  institution, additionalInfo, user } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { eq } from "drizzle-orm";
@@ -9,10 +9,11 @@ import { eq } from "drizzle-orm";
 export async function saveOnboardingData(data: {
   fullName: string;
   phoneNumber: string;
-  country: string;
-  state: string;
+  // country: string;
+  // state: string;
+  profileImageUrl: string;
   insName: string;
-  // oType: string;
+  // orgType: string;
   eventNumber: "1-5" | "5-20" | "20-50" | "50+";
   participantNumber: "<50" | "50-100" | "100-250" | "250-500" | "500+";
   featureType: "QR_Entry" | "Registration" | "Attendance" | "Complete_Event_Management";
@@ -44,8 +45,9 @@ export async function saveOnboardingData(data: {
         .set({
           fullName: data.fullName,
           phoneNumber: cleanPhone,
-          country: data.country,
-          state: data.state,
+          // country: data.country,
+          // state: data.state,
+          profileImageUrl: data.profileImageUrl,
         })
         .where(eq(userProfile.userId, userId));
     } else {
@@ -53,8 +55,9 @@ export async function saveOnboardingData(data: {
         userId,
         fullName: data.fullName,
         phoneNumber: cleanPhone,
-        country: data.country,
-        state: data.state,
+        // country: data.country,
+        // state: data.state,
+        profileImageUrl: data.profileImageUrl,
       });
     }
 
@@ -82,30 +85,30 @@ export async function saveOnboardingData(data: {
     //   });
     // }
 
-    const existingUsers = await db 
-    .select()
-    .from(user)
-    .where(eq(user.userId))
+    // const existingUsers = await db 
+    // .select()
+    // .from(user)
+    // .where(eq(user.userId))
 
-    // 3. Save organization/institution
-    const existingOrgs = await db
+    // 3. Save institution
+    const existingIns = await db
       .select()
       .from(institution)
       .where(eq(institution.userId, userId))
       .limit(1);
 
-    if (existingOrgs.length > 0) {
+    if (existingIns.length > 0) {
       await db
         .update(institution)
         .set({
-          institutionName: data.orgName,
+          institutionName: data.insName,
           officalEmail: session.user.email,
         })
         .where(eq(institution.userId, userId));
     } else {
       await db.insert(institution).values({
         userId,
-        institutionName: data.orgName,
+        institutionName: data.insName,
         officalEmail: session.user.email,
       });
     }
@@ -123,7 +126,7 @@ export async function saveOnboardingData(data: {
         .set({
           eventNumber: data.eventNumber,
           participantNumber: data.participantNumber,
-          featureType: data.featureType,
+          // featureType: data.featureType,
         })
         .where(eq(additionalInfo.userId, userId));
     } else {
@@ -131,7 +134,7 @@ export async function saveOnboardingData(data: {
         userId,
         eventNumber: data.eventNumber,
         participantNumber: data.participantNumber,
-        featureType: data.featureType,
+        // featureType: data.featureType,
       });
     }
 

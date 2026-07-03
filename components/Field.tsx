@@ -27,8 +27,8 @@ export default function Field({
     <div className="flex flex-col gap-1.5">
       {label && (
         <label
-          className="text-xs font-medium uppercase tracking-widest"
-          style={{ color: "#9ca3af" }}
+          className="text-xs font-semibold uppercase tracking-widest"
+          style={{ color: "#774360" }}
         >
           {label}
         </label>
@@ -41,19 +41,19 @@ export default function Field({
           onChange={(e) => onChange(e.target.value)}
           className="w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
           style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(149,1,1,0.2)",
-            color: "#f9fafb",
-            boxShadow: "inset 0 1px 2px rgba(0,0,0,0.4)",
+            background: "rgba(76,58,81,0.04)",
+            border: "1px solid rgba(178,80,104,0.2)",
+            color: "#4C3A51",
+            boxShadow: "inset 0 1px 2px rgba(76,58,81,0.06)",
           }}
           onFocus={(e) => {
-            e.target.style.borderColor = "rgba(255,0,0,0.5)";
+            e.target.style.borderColor = "rgba(178,80,104,0.55)";
             e.target.style.boxShadow =
-              "0 0 0 3px rgba(255,0,0,0.08), inset 0 1px 2px rgba(0,0,0,0.4)";
+              "0 0 0 3px rgba(178,80,104,0.1), inset 0 1px 2px rgba(76,58,81,0.06)";
           }}
           onBlur={(e) => {
-            e.target.style.borderColor = "rgba(149,1,1,0.2)";
-            e.target.style.boxShadow = "inset 0 1px 2px rgba(0,0,0,0.4)";
+            e.target.style.borderColor = "rgba(178,80,104,0.2)";
+            e.target.style.boxShadow = "inset 0 1px 2px rgba(76,58,81,0.06)";
           }}
         />
         {showToggle && (
@@ -61,12 +61,12 @@ export default function Field({
             type="button"
             onClick={onToggle}
             className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
-            style={{ color: "#6b7280" }}
+            style={{ color: "#9a8098" }}
             onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#9ca3af")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#4C3A51")
             }
             onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color = "#6b7280")
+              ((e.currentTarget as HTMLButtonElement).style.color = "#9a8098")
             }
           >
             {visible ? <EyeOff size={15} /> : <Eye size={15} />}
