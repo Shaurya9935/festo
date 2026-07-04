@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Check, ArrowRight, ArrowLeft, User, Building, Info, RefreshCw, Sparkles } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
-import { saveOnboardingData } from "@/services/onboarding";
+import { saveOnboardingData } from "@/services/onboarding.service";
 
 // ── Palette ────────────────────────────────────────────────────────────────
 // #4C3A51 deep-purple · #774360 plum · #B25068 rose · #E7AB79 amber

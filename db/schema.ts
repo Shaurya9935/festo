@@ -1,4 +1,5 @@
 import { relations } from "drizzle-orm";
+import { date, datetime } from "drizzle-orm/mysql-core";
 import { pgTable, text, timestamp, boolean, index, uuid, varchar, pgEnum } from "drizzle-orm/pg-core";
 
 // User Schema 
@@ -144,7 +145,34 @@ export const additionalInfo = pgTable('addtional_info', {
   userId: text('user_id').references(()=> user.id),
 
   eventNumber: eventNumberEnum('event_number').default('1-5'),
-  participantNumber: participantNumberEnum('participat_number').default('50-100'),
+  participantNumber: participantNumberEnum('participant_number').default('50-100'),
   featureType: text('feature_type').array().notNull().default(['QR_Entry']) 
+});
+
+
+// Event Schema 
+
+const eventStatusEnum = pgEnum('event_status_enum', ['draft', 'published'])
+
+export const events = pgTable("event", {
+  id: uuid('id').primaryKey().defaultRandom(),
+
+  organizerId: text('organizer_id').references(()=> user.id),
+
+  eventName: varchar('event_name', {length: 50}).notNull(),
+  eventDescription: text('event_description').notNull(),
+  
+  eventVenue: varchar('event_venue', {length:50}).notNull(),
+
+  eventStatus: eventStatusEnum('event_status').notNull().default('draft'),
+  
+  eventStartAt: timestamp("event_start_at", { mode: "date" }).notNull(),
+  eventEndAt: timestamp("event_end_at", { mode: "date" }).notNull(),
+
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
 });
 

@@ -3,7 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/db/index"; // your drizzle instance
 import * as schema from "@/db/schema"
 import { emailOTP } from "better-auth/plugins"
-import { sendVerificationEmail } from "@/services/email";
+import { sendVerificationEmail } from "@/services/email.service";
 
 export const auth = betterAuth({
     database: drizzleAdapter(db, {
