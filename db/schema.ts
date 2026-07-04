@@ -152,7 +152,7 @@ export const additionalInfo = pgTable('addtional_info', {
 
 // Event Schema 
 
-const eventStatusEnum = pgEnum('event_status_enum', ['draft', 'published'])
+export const eventStatusEnum = pgEnum('event_status_enum', ['draft', 'published'])
 
 export const events = pgTable("event", {
   id: uuid('id').primaryKey().defaultRandom(),
