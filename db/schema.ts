@@ -1,6 +1,7 @@
-import { relations } from "drizzle-orm";
+import { not, relations } from "drizzle-orm";
 import { date, datetime } from "drizzle-orm/mysql-core";
 import { pgTable, text, timestamp, boolean, index, uuid, varchar, pgEnum } from "drizzle-orm/pg-core";
+import { email } from "zod";
 
 // User Schema 
 
@@ -176,3 +177,15 @@ export const events = pgTable("event", {
     .notNull(),
 });
 
+// Student schema
+
+export const participants = pgTable("participants", {
+  id :uuid('id').primaryKey().defaultRandom(),
+
+  eventId: uuid('event_id').references(() => events.id),
+
+  name: varchar('name', {length: 30}).notNull(),
+  email: varchar('email', {length: 50}).notNull(),
+  participantId: text("participant_id"),
+  mobileNumber: varchar('mobile_number', {length: 12}),
+})
